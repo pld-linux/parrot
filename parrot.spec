@@ -1,4 +1,5 @@
 Summary:	A virtual machine designed to execute bytecode for interpreted languages
+Summary(pl):	Maszyna wirtualna przeznaczona do wykonywania bytecodu dla jêzyków interpretowanych
 Name:		parrot
 Version:	0.1.1
 Release:	1
@@ -18,110 +19,168 @@ Perl 6 compiler. There is already a partial Perl 6 compiler as well as
 compilers in various stages of completion for a wide range of other
 languages.
 
+%description -l pl
+Parrot to maszyna wirtualna zaprojektowana do wydajnego wykonywania
+bytecodu dla jêzyków interpretowanych. Parrot bêdzie celem kompilatora
+Perla 6. Istnieje ju¿ czê¶ciowy kompilator Perla 6, a tak¿e
+kompilatory w ró¿nych stopniach zaawansowania dla szerokiego zakresu
+innych jêzyków.
+
 %package devel
-Summary:	Header files and develpment documentation for parrot
+Summary:	Header files for parrot
+Summary(pl):	Pliki nag³ówkowe biblioteki parrot
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description devel
-Header files and develpment documentation for parrot.
+Header files for parrot.
+
+%description devel -l pl
+Pliki nag³ówkowe biblioteki parrot.
 
 %package static
 Summary:	Static parrot library
+Summary(pl):	Statyczna biblioteka parrot
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 Static parrot library.
 
+%description static -l pl
+Statyczna biblioteka parrot.
+
 %package basic
 Summary:	BASIC language
+Summary(pl):	Jêzyk BASIC
 Group:		Development/Languages
 
 %description basic
-BASIC language
+BASIC language.
+
+%description basic -l pl
+Jêzyk BASIC.
 
 %package befunge
-Summary:	befunge
+Summary:	Befunge language
+Summary(pl):	Jêzyk Befunge
 Group:		Development/Languages
 
 %description befunge
-befunge
+Befunge language.
+
+%description befunge -l pl
+Jêzyk Befunge
 
 %package bf
-Summary:	bf
+Summary:	bf language
+Summary(pl):	Jêzyk bf
 Group:		Development/Languages
 
 %description bf
-bf
+bf language.
+
+%description bf -l pl
+Jêzyk bf.
 
 %package cola
-Summary:	cola
+Summary:	cola language
+Summary(pl):	Jêzyk cola
 Group:		Development/Languages
 
 %description cola
-cola
+cola language.
+
+%description cola -l pl
+Jêzyk cola.
 
 %package forth
-Summary:	forth
+Summary:	Forth language
+Summary(pl):	Jêzyk Forth
 Group:		Development/Languages
 
 %description forth
-forth
+Forth language.
+
+%description forth -l pl
+Jêzyk Forth.
 
 %package jako
-Summary:	jako
+Summary:	jako language
+Summary(pl):	Jêzyk jako
 Group:		Development/Languages
 
 %description jako
-jako
+jako language.
+
+%description jako -l pl
+Jêzyk jako.
 
 %package ook
-Summary:	ook
+Summary:	ook language
+Summary(pl):	Jêzyk ook
 Group:		Development/Languages
 
 %description ook
-ook
+ook language.
+
+%description ook -l pl
+Jêzyk ook.
 
 %package perl6
-Summary:	perl6
+Summary:	Perl 6 language
+Summary(pl):	Jêzyk Perl 6
 Group:		Development/Languages
 
 %description perl6
-perl6
+Perl 6 language.
+
+%description perl6 -l pl
+Jêzyk Perl 6.
 
 %package regex
-Summary:	regex
+Summary:	regex language
+Summary(pl):	Jêzyk regex
 Group:		Development/Languages
 
 %description regex
-regex
+regex language.
+
+%description regex -l pl
+Jêzyk regex.
 
 %package ruby
-Summary:	ruby
+Summary:	Ruby language
+Summary(pl):	Jêzyk Ruby
 Group:		Development/Languages
 
 %description ruby
-ruby
+Ruby language.
+
+%description ruby -l pl
+Jêzyk Ruby.
 
 %package scheme
-Summary:	scheme
+Summary:	Scheme language
+Summary(pl):	Jêzyk Scheme
 Group:		Development/Languages
 
 %description scheme
-scheme
+Scheme language.
+
+%description scheme -l pl
+Jêzyk Scheme.
 
 %prep
 %setup -q
 
 %build
-%{__perl} \
-	Configure.pl --optimize
+%{__perl} Configure.pl \
+	--optimize
 %{__make} parrot pdb pdump \
-	CC="%{__cc}" parrot pdb pdump
+	CC="%{__cc}"
 %{__make} -C imcc
-%{__perl} \
-	tools/dev/mk_manifests.pl \
+%{__perl} tools/dev/mk_manifests.pl \
 	--prefix=%{_prefix} \
 	--exec-prefix=%{_exec_prefix} \
 	--bindir=%{_bindir} \
