@@ -1,13 +1,13 @@
 Summary:	A virtual machine designed to execute bytecode for interpreted languages
 Summary(pl):	Maszyna wirtualna przeznaczona do wykonywania bytecodu dla jêzyków interpretowanych
 Name:		parrot
-Version:	0.1.1
+Version:	0.2.0
 Release:	1
 Epoch:		0
-License:	BSD
+License:	GPL v2/Artistic
 Group:		Libraries
 Source0:	ftp://ftp.cpan.org/pub/CPAN/authors/id/L/LT/LTOETSCH/%{name}-%{version}.tar.gz
-# Source0-md5:	39991aee98df7b1249e44cced43403e3
+# Source0-md5:	ece59a572b67bea73ed8aa7230c253c2
 BuildRequires:	perl-devel
 URL:		http://www.parrotcode.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -179,7 +179,6 @@ Jêzyk Scheme.
 	--optimize
 %{__make} parrot pdb pdump \
 	CC="%{__cc}"
-%{__make} -C imcc
 %{__perl} tools/dev/mk_manifests.pl \
 	--prefix=%{_prefix} \
 	--exec-prefix=%{_exec_prefix} \
@@ -207,7 +206,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGES CREDITS LICENSE README
+%doc ABI_CHANGES CREDITS ChangeLog README
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
