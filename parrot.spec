@@ -231,55 +231,55 @@ rm -rf $RPM_BUILD_ROOT
 %doc ABI_CHANGES CREDITS ChangeLog README 
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
-%attr(755,root,root) %dir %{_libdir}/parrot
-%attr(755,root,root) %dir %{_libdir}/parrot/dynext
+%dir %{_libdir}/parrot
+%dir %{_libdir}/parrot/dynext
 %attr(755,root,root) %{_libdir}/parrot/dynext/*.so
-%attr(644,root,root) %{_libdir}/parrot/library/*.pir
-%attr(644,root,root) %{_libdir}/parrot/library/*.pbc
-%attr(644,root,root) %{_libdir}/parrot/library/*.pasm
-%attr(644,root,root) %{_libdir}/parrot/library/*.declarations
-%attr(755,root,root) %dir %{_libdir}/parrot/library
-%attr(755,root,root) %dir %{_libdir}/parrot/library/Data
-%attr(755,root,root) %dir %{_libdir}/parrot/library/Data/Dumper
-%attr(755,root,root) %dir %{_libdir}/parrot/library/Digest
-%attr(755,root,root) %dir %{_libdir}/parrot/library/File
-%attr(755,root,root) %dir %{_libdir}/parrot/library/File/Spec
-%attr(755,root,root) %dir %{_libdir}/parrot/library/Getopt
-%attr(755,root,root) %dir %{_libdir}/parrot/library/JSON
-%attr(755,root,root) %dir %{_libdir}/parrot/library/PGE
-%attr(755,root,root) %dir %{_libdir}/parrot/library/SDL
-%attr(755,root,root) %dir %{_libdir}/parrot/library/Stream
-%attr(755,root,root) %dir %{_libdir}/parrot/library/Test
-%attr(755,root,root) %dir %{_libdir}/parrot/library/Test/Builder
-%attr(755,root,root) %dir %{_libdir}/parrot/library/YAML
-%attr(755,root,root) %dir %{_libdir}/parrot/library/YAML/Parser
+%{_libdir}/parrot/library/*.pir
+%{_libdir}/parrot/library/*.pbc
+%{_libdir}/parrot/library/*.pasm
+%{_libdir}/parrot/library/*.declarations
+%dir %{_libdir}/parrot/library
+%dir %{_libdir}/parrot/library/Data
+%dir %{_libdir}/parrot/library/Data/Dumper
+%dir %{_libdir}/parrot/library/Digest
+%dir %{_libdir}/parrot/library/File
+%dir %{_libdir}/parrot/library/File/Spec
+%dir %{_libdir}/parrot/library/Getopt
+%dir %{_libdir}/parrot/library/JSON
+%dir %{_libdir}/parrot/library/PGE
+%dir %{_libdir}/parrot/library/SDL
+%dir %{_libdir}/parrot/library/Stream
+%dir %{_libdir}/parrot/library/Test
+%dir %{_libdir}/parrot/library/Test/Builder
+%dir %{_libdir}/parrot/library/YAML
+%dir %{_libdir}/parrot/library/YAML/Parser
 
-%attr(644,root,root) %{_libdir}/parrot/library/Data/*.pir
-%attr(644,root,root) %{_libdir}/parrot/library/Data/*.pbc
-%attr(644,root,root) %{_libdir}/parrot/library/Data/Dumper/*.pir
-%attr(644,root,root) %{_libdir}/parrot/library/Data/Dumper/*.pbc
-%attr(644,root,root) %{_libdir}/parrot/library/Digest/MD5.pir
-%attr(644,root,root) %{_libdir}/parrot/library/File/Spec.pir
-%attr(644,root,root) %{_libdir}/parrot/library/File/Spec/*.pir
-%attr(644,root,root) %{_libdir}/parrot/library/Getopt/*.pir
-%attr(644,root,root) %{_libdir}/parrot/library/Getopt/*.pbc
-%attr(644,root,root) %{_libdir}/parrot/library/JSON/*.pir
-%attr(644,root,root) %{_libdir}/parrot/library/PGE/*.pir
-%attr(644,root,root) %{_libdir}/parrot/library/SDL/*.pir
-%attr(644,root,root) %{_libdir}/parrot/library/SDL/*.png
-%attr(644,root,root) %{_libdir}/parrot/library/Stream/*.pir
-%attr(644,root,root) %{_libdir}/parrot/library/Stream/*.pbc
-%attr(644,root,root) %{_libdir}/parrot/library/Test/*.pir
-%attr(644,root,root) %{_libdir}/parrot/library/Test/Builder/*.pir
-%attr(644,root,root) %{_libdir}/parrot/library/YAML/Parser/*.pir
+%{_libdir}/parrot/library/Data/*.pir
+%{_libdir}/parrot/library/Data/*.pbc
+%{_libdir}/parrot/library/Data/Dumper/*.pir
+%{_libdir}/parrot/library/Data/Dumper/*.pbc
+%{_libdir}/parrot/library/Digest/MD5.pir
+%{_libdir}/parrot/library/File/Spec.pir
+%{_libdir}/parrot/library/File/Spec/*.pir
+%{_libdir}/parrot/library/Getopt/*.pir
+%{_libdir}/parrot/library/Getopt/*.pbc
+%{_libdir}/parrot/library/JSON/*.pir
+%{_libdir}/parrot/library/PGE/*.pir
+%{_libdir}/parrot/library/SDL/*.pir
+%{_libdir}/parrot/library/SDL/*.png
+%{_libdir}/parrot/library/Stream/*.pir
+%{_libdir}/parrot/library/Stream/*.pbc
+%{_libdir}/parrot/library/Test/*.pir
+%{_libdir}/parrot/library/Test/Builder/*.pir
+%{_libdir}/parrot/library/YAML/Parser/*.pir
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*.so
-%attr(755,root,root) %dir %{_includedir}/%{name}
-%attr(755,root,root) %dir %{_includedir}/%{name}/oplib
-%attr(755,root,root) %dir %{_libdir}/parrot/include
-%attr(644,root,root) %{_libdir}/parrot/include/*
+%dir %{_includedir}/%{name}
+%dir %{_includedir}/%{name}/oplib
+%dir %{_libdir}/parrot/include
+%{_libdir}/parrot/include/*
 %{_includedir}/%{name}/*.h
 %{_includedir}/%{name}/oplib/*.h
 #%{_mandir}/man?/*
