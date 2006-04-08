@@ -1,13 +1,16 @@
+# TODO, finish %files (especially docs to man conversion)
+# builds here but i didnt tested it yet..
+# some work around packages splitting could be done too
 Summary:	A virtual machine designed to execute bytecode for interpreted languages
 Summary(pl):	Maszyna wirtualna przeznaczona do wykonywania bytecodu dla jêzyków interpretowanych
 Name:		parrot
-Version:	0.2.0
-Release:	1
+Version:	0.4.2
+Release:	0.1
 Epoch:		0
 License:	GPL v2/Artistic
 Group:		Libraries
 Source0:	ftp://ftp.cpan.org/pub/CPAN/authors/id/L/LT/LTOETSCH/%{name}-%{version}.tar.gz
-# Source0-md5:	ece59a572b67bea73ed8aa7230c253c2
+# Source0-md5:	f596a8eca0727887ce8e866950573dd7
 BuildRequires:	perl-devel
 URL:		http://www.parrotcode.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -190,13 +193,32 @@ Jêzyk Scheme.
 %install
 rm -rf $RPM_BUILD_ROOT
 
+install -d $RPM_BUILD_ROOT%{_bindir}
+
+	#BINDIR=%{_bindir} \
+	#LIBDIR=%{_libdir} \
+	#INCLUDEDIR=%{_includedir} \
+
 %{__make} install \
-	BUILDPREFIX=$RPM_BUILD_ROOT \
 	PREFIX=%{_prefix} \
 	EXEC_PREFIX=%{_exec_prefix} \
-	BINDIR=%{_bindir} \
-	LIBDIR=%{_libdir} \
-	INCLUDEDIR=%{_includedir}
+	BIN_DIR=%{_bindir} \
+	LIB_DIR=%{_libdir} \
+	INCLUDE_DIR=%{_includedir} \
+	DOC_DIR=%{_datadir} \
+	DESTDIR=$RPM_BUILD_ROOT 
+
+install -d $RPM_BUILD_ROOT%{_examplesdir}
+mv $RPM_BUILD_ROOT%{_datadir}/examples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+
+#mv $RPM_BUILD_ROOT%{_datadir}/docs $RPM_BUILD_ROOT/tmp-doc-dir
+#install -d $RPM_BUILD_ROOT%{_docdir}
+#mv $RPM_BUILD_ROOT/tmp-doc-dir $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
+#mv -v $RPM_BUILD_ROOT%{_datadir}/LICENSES/* $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}/
+#rmdir -v $RPM_BUILD_ROOT%{_datadir}/LICENSES
+#mv -v $RPM_BUILD_ROOT%{_datadir}/RESPONSIBLE_PARTIES $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}/
+#mv -v $RPM_BUILD_ROOT%{_datadir}/TODO $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}/
+
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -206,14 +228,63 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ABI_CHANGES CREDITS ChangeLog README
+%doc ABI_CHANGES CREDITS ChangeLog README 
+%attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %dir %{_libdir}/parrot
+%attr(755,root,root) %dir %{_libdir}/parrot/dynext
+%attr(755,root,root) %{_libdir}/parrot/dynext/*.so
+%attr(644,root,root) %{_libdir}/parrot/library/*.pir
+%attr(644,root,root) %{_libdir}/parrot/library/*.pbc
+%attr(644,root,root) %{_libdir}/parrot/library/*.pasm
+%attr(644,root,root) %{_libdir}/parrot/library/*.declarations
+%attr(755,root,root) %dir %{_libdir}/parrot/library
+%attr(755,root,root) %dir %{_libdir}/parrot/library/Data
+%attr(755,root,root) %dir %{_libdir}/parrot/library/Data/Dumper
+%attr(755,root,root) %dir %{_libdir}/parrot/library/Digest
+%attr(755,root,root) %dir %{_libdir}/parrot/library/File
+%attr(755,root,root) %dir %{_libdir}/parrot/library/File/Spec
+%attr(755,root,root) %dir %{_libdir}/parrot/library/Getopt
+%attr(755,root,root) %dir %{_libdir}/parrot/library/JSON
+%attr(755,root,root) %dir %{_libdir}/parrot/library/PGE
+%attr(755,root,root) %dir %{_libdir}/parrot/library/SDL
+%attr(755,root,root) %dir %{_libdir}/parrot/library/Stream
+%attr(755,root,root) %dir %{_libdir}/parrot/library/Test
+%attr(755,root,root) %dir %{_libdir}/parrot/library/Test/Builder
+%attr(755,root,root) %dir %{_libdir}/parrot/library/YAML
+%attr(755,root,root) %dir %{_libdir}/parrot/library/YAML/Parser
+
+%attr(644,root,root) %{_libdir}/parrot/library/Data/*.pir
+%attr(644,root,root) %{_libdir}/parrot/library/Data/*.pbc
+%attr(644,root,root) %{_libdir}/parrot/library/Data/Dumper/*.pir
+%attr(644,root,root) %{_libdir}/parrot/library/Data/Dumper/*.pbc
+%attr(644,root,root) %{_libdir}/parrot/library/Digest/MD5.pir
+%attr(644,root,root) %{_libdir}/parrot/library/File/Spec.pir
+%attr(644,root,root) %{_libdir}/parrot/library/File/Spec/*.pir
+%attr(644,root,root) %{_libdir}/parrot/library/Getopt/*.pir
+%attr(644,root,root) %{_libdir}/parrot/library/Getopt/*.pbc
+%attr(644,root,root) %{_libdir}/parrot/library/JSON/*.pir
+%attr(644,root,root) %{_libdir}/parrot/library/PGE/*.pir
+%attr(644,root,root) %{_libdir}/parrot/library/SDL/*.pir
+%attr(644,root,root) %{_libdir}/parrot/library/SDL/*.png
+%attr(644,root,root) %{_libdir}/parrot/library/Stream/*.pir
+%attr(644,root,root) %{_libdir}/parrot/library/Stream/*.pbc
+%attr(644,root,root) %{_libdir}/parrot/library/Test/*.pir
+%attr(644,root,root) %{_libdir}/parrot/library/Test/Builder/*.pir
+%attr(644,root,root) %{_libdir}/parrot/library/YAML/Parser/*.pir
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*.so
-%{_includedir}/*.h
-%{_mandir}/man?/*
+%attr(755,root,root) %dir %{_includedir}/%{name}
+%attr(755,root,root) %dir %{_includedir}/%{name}/oplib
+%attr(755,root,root) %dir %{_libdir}/parrot/include
+%attr(644,root,root) %{_libdir}/parrot/include/*
+%{_includedir}/%{name}/*.h
+%{_includedir}/%{name}/oplib/*.h
+#%{_mandir}/man?/*
+%dir %{_examplesdir}/%{name}-%{version}
+%{_examplesdir}/%{name}-%{version}/*
 
 %files static
 %defattr(644,root,root,755)
