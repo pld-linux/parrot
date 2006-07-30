@@ -4,15 +4,14 @@
 Summary:	A virtual machine designed to execute bytecode for interpreted languages
 Summary(pl):	Maszyna wirtualna przeznaczona do wykonywania bytecodu dla jêzyków interpretowanych
 Name:		parrot
-Version:	0.4.2
-Release:	0.1
-Epoch:		0
+Version:	0.4.5
+Release:	0.2
 License:	GPL v2/Artistic
 Group:		Libraries
 Source0:	ftp://ftp.cpan.org/pub/CPAN/authors/id/L/LT/LTOETSCH/%{name}-%{version}.tar.gz
-# Source0-md5:	f596a8eca0727887ce8e866950573dd7
-BuildRequires:	perl-devel
+# Source0-md5:	92ace4bf91862281a66438677d76d8a1
 URL:		http://www.parrotcode.org/
+BuildRequires:	perl-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -180,7 +179,7 @@ Jêzyk Scheme.
 %build
 %{__perl} Configure.pl \
 	--optimize
-%{__make} parrot pdb pdump \
+%{__make} -j1 parrot pdb pdump \
 	CC="%{__cc}"
 %{__perl} tools/dev/mk_manifests.pl \
 	--prefix=%{_prefix} \
@@ -189,6 +188,7 @@ Jêzyk Scheme.
 	--libdir=%{_libdir} \
 	--includedir=%{_includedir} \
 	MANIFEST
+%{__make} -j1 -C docs html
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -206,7 +206,7 @@ install -d $RPM_BUILD_ROOT%{_bindir}
 	LIB_DIR=%{_libdir} \
 	INCLUDE_DIR=%{_includedir} \
 	DOC_DIR=%{_datadir} \
-	DESTDIR=$RPM_BUILD_ROOT 
+	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}
 mv $RPM_BUILD_ROOT%{_datadir}/examples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
@@ -228,7 +228,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ABI_CHANGES CREDITS ChangeLog README 
+%doc ABI_CHANGES CREDITS ChangeLog NEWS README docs/html
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %dir %{_libdir}/parrot
@@ -285,6 +285,7 @@ rm -rf $RPM_BUILD_ROOT
 #%{_mandir}/man?/*
 %dir %{_examplesdir}/%{name}-%{version}
 %{_examplesdir}/%{name}-%{version}/*
+%{_pkgconfigdir}/*.pc
 
 %files static
 %defattr(644,root,root,755)
