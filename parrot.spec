@@ -2,7 +2,7 @@
 # builds here but i didnt tested it yet..
 # some work around packages splitting could be done too
 Summary:	A virtual machine designed to execute bytecode for interpreted languages
-Summary(pl):	Maszyna wirtualna przeznaczona do wykonywania bytecodu dla jêzyków interpretowanych
+Summary(pl.UTF-8):   Maszyna wirtualna przeznaczona do wykonywania bytecodu dla jÄ™zykÃ³w interpretowanych
 Name:		parrot
 Version:	0.4.5
 Release:	0.2
@@ -21,157 +21,157 @@ Perl 6 compiler. There is already a partial Perl 6 compiler as well as
 compilers in various stages of completion for a wide range of other
 languages.
 
-%description -l pl
+%description -l pl.UTF-8
 Parrot to maszyna wirtualna zaprojektowana do wydajnego wykonywania
-bytecodu dla jêzyków interpretowanych. Parrot bêdzie celem kompilatora
-Perla 6. Istnieje ju¿ czê¶ciowy kompilator Perla 6, a tak¿e
-kompilatory w ró¿nych stopniach zaawansowania dla szerokiego zakresu
-innych jêzyków.
+bytecodu dla jÄ™zykÃ³w interpretowanych. Parrot bÄ™dzie celem kompilatora
+Perla 6. Istnieje juÅ¼ czÄ™Å›ciowy kompilator Perla 6, a takÅ¼e
+kompilatory w rÃ³Å¼nych stopniach zaawansowania dla szerokiego zakresu
+innych jÄ™zykÃ³w.
 
 %package devel
 Summary:	Header files for parrot
-Summary(pl):	Pliki nag³ówkowe biblioteki parrot
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe biblioteki parrot
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description devel
 Header files for parrot.
 
-%description devel -l pl
-Pliki nag³ówkowe biblioteki parrot.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe biblioteki parrot.
 
 %package static
 Summary:	Static parrot library
-Summary(pl):	Statyczna biblioteka parrot
+Summary(pl.UTF-8):   Statyczna biblioteka parrot
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 Static parrot library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka parrot.
 
 %package basic
 Summary:	BASIC language
-Summary(pl):	Jêzyk BASIC
+Summary(pl.UTF-8):   JÄ™zyk BASIC
 Group:		Development/Languages
 
 %description basic
 BASIC language.
 
-%description basic -l pl
-Jêzyk BASIC.
+%description basic -l pl.UTF-8
+JÄ™zyk BASIC.
 
 %package befunge
 Summary:	Befunge language
-Summary(pl):	Jêzyk Befunge
+Summary(pl.UTF-8):   JÄ™zyk Befunge
 Group:		Development/Languages
 
 %description befunge
 Befunge language.
 
-%description befunge -l pl
-Jêzyk Befunge
+%description befunge -l pl.UTF-8
+JÄ™zyk Befunge
 
 %package bf
 Summary:	bf language
-Summary(pl):	Jêzyk bf
+Summary(pl.UTF-8):   JÄ™zyk bf
 Group:		Development/Languages
 
 %description bf
 bf language.
 
-%description bf -l pl
-Jêzyk bf.
+%description bf -l pl.UTF-8
+JÄ™zyk bf.
 
 %package cola
 Summary:	cola language
-Summary(pl):	Jêzyk cola
+Summary(pl.UTF-8):   JÄ™zyk cola
 Group:		Development/Languages
 
 %description cola
 cola language.
 
-%description cola -l pl
-Jêzyk cola.
+%description cola -l pl.UTF-8
+JÄ™zyk cola.
 
 %package forth
 Summary:	Forth language
-Summary(pl):	Jêzyk Forth
+Summary(pl.UTF-8):   JÄ™zyk Forth
 Group:		Development/Languages
 
 %description forth
 Forth language.
 
-%description forth -l pl
-Jêzyk Forth.
+%description forth -l pl.UTF-8
+JÄ™zyk Forth.
 
 %package jako
 Summary:	jako language
-Summary(pl):	Jêzyk jako
+Summary(pl.UTF-8):   JÄ™zyk jako
 Group:		Development/Languages
 
 %description jako
 jako language.
 
-%description jako -l pl
-Jêzyk jako.
+%description jako -l pl.UTF-8
+JÄ™zyk jako.
 
 %package ook
 Summary:	ook language
-Summary(pl):	Jêzyk ook
+Summary(pl.UTF-8):   JÄ™zyk ook
 Group:		Development/Languages
 
 %description ook
 ook language.
 
-%description ook -l pl
-Jêzyk ook.
+%description ook -l pl.UTF-8
+JÄ™zyk ook.
 
 %package perl6
 Summary:	Perl 6 language
-Summary(pl):	Jêzyk Perl 6
+Summary(pl.UTF-8):   JÄ™zyk Perl 6
 Group:		Development/Languages
 
 %description perl6
 Perl 6 language.
 
-%description perl6 -l pl
-Jêzyk Perl 6.
+%description perl6 -l pl.UTF-8
+JÄ™zyk Perl 6.
 
 %package regex
 Summary:	regex language
-Summary(pl):	Jêzyk regex
+Summary(pl.UTF-8):   JÄ™zyk regex
 Group:		Development/Languages
 
 %description regex
 regex language.
 
-%description regex -l pl
-Jêzyk regex.
+%description regex -l pl.UTF-8
+JÄ™zyk regex.
 
 %package ruby
 Summary:	Ruby language
-Summary(pl):	Jêzyk Ruby
+Summary(pl.UTF-8):   JÄ™zyk Ruby
 Group:		Development/Languages
 
 %description ruby
 Ruby language.
 
-%description ruby -l pl
-Jêzyk Ruby.
+%description ruby -l pl.UTF-8
+JÄ™zyk Ruby.
 
 %package scheme
 Summary:	Scheme language
-Summary(pl):	Jêzyk Scheme
+Summary(pl.UTF-8):   JÄ™zyk Scheme
 Group:		Development/Languages
 
 %description scheme
 Scheme language.
 
-%description scheme -l pl
-Jêzyk Scheme.
+%description scheme -l pl.UTF-8
+JÄ™zyk Scheme.
 
 %prep
 %setup -q
