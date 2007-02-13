@@ -2,7 +2,7 @@
 # builds here but i didnt tested it yet..
 # some work around packages splitting could be done too
 Summary:	A virtual machine designed to execute bytecode for interpreted languages
-Summary(pl.UTF-8):   Maszyna wirtualna przeznaczona do wykonywania bytecodu dla języków interpretowanych
+Summary(pl.UTF-8):	Maszyna wirtualna przeznaczona do wykonywania bytecodu dla języków interpretowanych
 Name:		parrot
 Version:	0.4.5
 Release:	0.2
@@ -30,7 +30,7 @@ innych języków.
 
 %package devel
 Summary:	Header files for parrot
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki parrot
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki parrot
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -42,7 +42,7 @@ Pliki nagłówkowe biblioteki parrot.
 
 %package static
 Summary:	Static parrot library
-Summary(pl.UTF-8):   Statyczna biblioteka parrot
+Summary(pl.UTF-8):	Statyczna biblioteka parrot
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
@@ -54,7 +54,7 @@ Statyczna biblioteka parrot.
 
 %package basic
 Summary:	BASIC language
-Summary(pl.UTF-8):   Język BASIC
+Summary(pl.UTF-8):	Język BASIC
 Group:		Development/Languages
 
 %description basic
@@ -65,7 +65,7 @@ Język BASIC.
 
 %package befunge
 Summary:	Befunge language
-Summary(pl.UTF-8):   Język Befunge
+Summary(pl.UTF-8):	Język Befunge
 Group:		Development/Languages
 
 %description befunge
@@ -76,7 +76,7 @@ Język Befunge
 
 %package bf
 Summary:	bf language
-Summary(pl.UTF-8):   Język bf
+Summary(pl.UTF-8):	Język bf
 Group:		Development/Languages
 
 %description bf
@@ -87,7 +87,7 @@ Język bf.
 
 %package cola
 Summary:	cola language
-Summary(pl.UTF-8):   Język cola
+Summary(pl.UTF-8):	Język cola
 Group:		Development/Languages
 
 %description cola
@@ -98,7 +98,7 @@ Język cola.
 
 %package forth
 Summary:	Forth language
-Summary(pl.UTF-8):   Język Forth
+Summary(pl.UTF-8):	Język Forth
 Group:		Development/Languages
 
 %description forth
@@ -109,7 +109,7 @@ Język Forth.
 
 %package jako
 Summary:	jako language
-Summary(pl.UTF-8):   Język jako
+Summary(pl.UTF-8):	Język jako
 Group:		Development/Languages
 
 %description jako
@@ -120,7 +120,7 @@ Język jako.
 
 %package ook
 Summary:	ook language
-Summary(pl.UTF-8):   Język ook
+Summary(pl.UTF-8):	Język ook
 Group:		Development/Languages
 
 %description ook
@@ -131,7 +131,7 @@ Język ook.
 
 %package perl6
 Summary:	Perl 6 language
-Summary(pl.UTF-8):   Język Perl 6
+Summary(pl.UTF-8):	Język Perl 6
 Group:		Development/Languages
 
 %description perl6
@@ -142,7 +142,7 @@ Język Perl 6.
 
 %package regex
 Summary:	regex language
-Summary(pl.UTF-8):   Język regex
+Summary(pl.UTF-8):	Język regex
 Group:		Development/Languages
 
 %description regex
@@ -153,7 +153,7 @@ Język regex.
 
 %package ruby
 Summary:	Ruby language
-Summary(pl.UTF-8):   Język Ruby
+Summary(pl.UTF-8):	Język Ruby
 Group:		Development/Languages
 
 %description ruby
@@ -164,7 +164,7 @@ Język Ruby.
 
 %package scheme
 Summary:	Scheme language
-Summary(pl.UTF-8):   Język Scheme
+Summary(pl.UTF-8):	Język Scheme
 Group:		Development/Languages
 
 %description scheme
