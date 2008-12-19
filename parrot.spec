@@ -4,13 +4,13 @@
 Summary:	A virtual machine designed to execute bytecode for interpreted languages
 Summary(pl.UTF-8):	Maszyna wirtualna przeznaczona do wykonywania bytecodu dla języków interpretowanych
 Name:		parrot
-Version:	0.4.5
+Version:	0.8.2
 Release:	0.2
 License:	GPL v2/Artistic
 Group:		Libraries
-Source0:	ftp://ftp.cpan.org/pub/CPAN/authors/id/L/LT/LTOETSCH/%{name}-%{version}.tar.gz
-# Source0-md5:	92ace4bf91862281a66438677d76d8a1
-URL:		http://www.parrotcode.org/
+Source0:	ftp://ftp.parrot.org/pub/parrot/releases/devel/0.8.2/%{name}-%{version}.tar.gz
+# Source0-md5:	3ec63a8d9933cd38a36c15ecf8ae755f
+URL:		http://www.parrot.org/
 BuildRequires:	perl-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -178,16 +178,9 @@ Język Scheme.
 
 %build
 %{__perl} Configure.pl \
-	--optimize
-%{__make} -j1 parrot pdb pdump \
-	CC="%{__cc}"
-%{__perl} tools/dev/mk_manifests.pl \
-	--prefix=%{_prefix} \
-	--exec-prefix=%{_exec_prefix} \
-	--bindir=%{_bindir} \
-	--libdir=%{_libdir} \
-	--includedir=%{_includedir} \
-	MANIFEST
+	--optimize \
+	--cc="%{__cc}"
+%{__make} -j1
 %{__make} -j1 -C docs html
 
 %install
@@ -199,7 +192,7 @@ install -d $RPM_BUILD_ROOT%{_bindir}
 	#LIBDIR=%{_libdir} \
 	#INCLUDEDIR=%{_includedir} \
 
-%{__make} install \
+%{__make} reallyinstall \
 	PREFIX=%{_prefix} \
 	EXEC_PREFIX=%{_exec_prefix} \
 	BIN_DIR=%{_bindir} \
@@ -228,14 +221,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ABI_CHANGES CREDITS ChangeLog NEWS README docs/html
+%doc CREDITS ChangeLog NEWS README docs/html
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %dir %{_libdir}/parrot
 %dir %{_libdir}/parrot/dynext
 %attr(755,root,root) %{_libdir}/parrot/dynext/*.so
 %{_libdir}/parrot/library/*.pir
-%{_libdir}/parrot/library/*.pbc
 %{_libdir}/parrot/library/*.pasm
 %{_libdir}/parrot/library/*.declarations
 %dir %{_libdir}/parrot/library
@@ -245,7 +237,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/parrot/library/File
 %dir %{_libdir}/parrot/library/File/Spec
 %dir %{_libdir}/parrot/library/Getopt
-%dir %{_libdir}/parrot/library/JSON
 %dir %{_libdir}/parrot/library/PGE
 %dir %{_libdir}/parrot/library/SDL
 %dir %{_libdir}/parrot/library/Stream
@@ -255,20 +246,15 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/parrot/library/YAML/Parser
 
 %{_libdir}/parrot/library/Data/*.pir
-%{_libdir}/parrot/library/Data/*.pbc
 %{_libdir}/parrot/library/Data/Dumper/*.pir
-%{_libdir}/parrot/library/Data/Dumper/*.pbc
 %{_libdir}/parrot/library/Digest/MD5.pir
 %{_libdir}/parrot/library/File/Spec.pir
 %{_libdir}/parrot/library/File/Spec/*.pir
 %{_libdir}/parrot/library/Getopt/*.pir
-%{_libdir}/parrot/library/Getopt/*.pbc
-%{_libdir}/parrot/library/JSON/*.pir
 %{_libdir}/parrot/library/PGE/*.pir
 %{_libdir}/parrot/library/SDL/*.pir
 %{_libdir}/parrot/library/SDL/*.png
 %{_libdir}/parrot/library/Stream/*.pir
-%{_libdir}/parrot/library/Stream/*.pbc
 %{_libdir}/parrot/library/Test/*.pir
 %{_libdir}/parrot/library/Test/Builder/*.pir
 %{_libdir}/parrot/library/YAML/Parser/*.pir
