@@ -1,17 +1,19 @@
-# TODO, finish %files (especially docs to man conversion)
-# builds here but i didnt tested it yet..
-# some work around packages splitting could be done too
+# TODO:	finish %files (especially docs to man conversion)
+#	html docs
+# 	builds here (and here) but i didnt tested it yet..
+# 	some work around packages splitting could be done too
 Summary:	A virtual machine designed to execute bytecode for interpreted languages
 Summary(pl.UTF-8):	Maszyna wirtualna przeznaczona do wykonywania bytecodu dla języków interpretowanych
 Name:		parrot
-Version:	0.8.2
-Release:	0.2
+Version:	1.0.0
+Release:	0.1
 License:	GPL v2/Artistic
 Group:		Libraries
-Source0:	ftp://ftp.parrot.org/pub/parrot/releases/devel/0.8.2/%{name}-%{version}.tar.gz
-# Source0-md5:	3ec63a8d9933cd38a36c15ecf8ae755f
+Source0:	ftp://ftp.parrot.org/pub/parrot/releases/stable/%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	649ce1fb7c0edaf89dc1cd52ff267b1a
 URL:		http://www.parrot.org/
 BuildRequires:	perl-devel
+BuildRequires:	libicu-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -192,7 +194,7 @@ install -d $RPM_BUILD_ROOT%{_bindir}
 	#LIBDIR=%{_libdir} \
 	#INCLUDEDIR=%{_includedir} \
 
-%{__make} reallyinstall \
+%{__make} install \
 	PREFIX=%{_prefix} \
 	EXEC_PREFIX=%{_exec_prefix} \
 	BIN_DIR=%{_bindir} \
@@ -201,8 +203,9 @@ install -d $RPM_BUILD_ROOT%{_bindir}
 	DOC_DIR=%{_datadir} \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT%{_examplesdir}
-mv $RPM_BUILD_ROOT%{_datadir}/examples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+# looks like no examples in parrot 1.0
+#install -d $RPM_BUILD_ROOT%{_examplesdir}
+#mv $RPM_BUILD_ROOT%{_datadir}/examples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 #mv $RPM_BUILD_ROOT%{_datadir}/docs $RPM_BUILD_ROOT/tmp-doc-dir
 #install -d $RPM_BUILD_ROOT%{_docdir}
@@ -225,53 +228,80 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %dir %{_libdir}/parrot
-%dir %{_libdir}/parrot/dynext
-%attr(755,root,root) %{_libdir}/parrot/dynext/*.so
-%{_libdir}/parrot/library/*.pir
-%{_libdir}/parrot/library/*.pasm
-%{_libdir}/parrot/library/*.declarations
-%dir %{_libdir}/parrot/library
-%dir %{_libdir}/parrot/library/Data
-%dir %{_libdir}/parrot/library/Data/Dumper
-%dir %{_libdir}/parrot/library/Digest
-%dir %{_libdir}/parrot/library/File
-%dir %{_libdir}/parrot/library/File/Spec
-%dir %{_libdir}/parrot/library/Getopt
-%dir %{_libdir}/parrot/library/PGE
-%dir %{_libdir}/parrot/library/SDL
-%dir %{_libdir}/parrot/library/Stream
-%dir %{_libdir}/parrot/library/Test
-%dir %{_libdir}/parrot/library/Test/Builder
-%dir %{_libdir}/parrot/library/YAML
-%dir %{_libdir}/parrot/library/YAML/Parser
+%dir %{_libdir}/parrot/%{version}
+%dir %{_libdir}/parrot/%{version}/dynext
+%attr(755,root,root) %{_libdir}/parrot/%{version}/dynext/*.so
+%{_libdir}/parrot/%{version}/library/*.pir
+%{_libdir}/parrot/%{version}/library/*.pasm
+%{_libdir}/parrot/%{version}/library/*.declarations
+%dir %{_libdir}/parrot/%{version}/library
+%dir %{_libdir}/parrot/%{version}/library/CGI
+%dir %{_libdir}/parrot/%{version}/library/Config
+%dir %{_libdir}/parrot/%{version}/library/Data
+%dir %{_libdir}/parrot/%{version}/library/Data/Dumper
+%dir %{_libdir}/parrot/%{version}/library/Digest
+%dir %{_libdir}/parrot/%{version}/library/Getopt
+%dir %{_libdir}/parrot/%{version}/library/HTTP
+%dir %{_libdir}/parrot/%{version}/library/Math
+%dir %{_libdir}/parrot/%{version}/library/Math/Random
+%dir %{_libdir}/parrot/%{version}/library/MIME
+%dir %{_libdir}/parrot/%{version}/library/NCI
+%dir %{_libdir}/parrot/%{version}/library/Parrot
+%dir %{_libdir}/parrot/%{version}/library/PGE
+%dir %{_libdir}/parrot/%{version}/library/SDL
+%dir %{_libdir}/parrot/%{version}/library/Stream
+%dir %{_libdir}/parrot/%{version}/library/String
+%dir %{_libdir}/parrot/%{version}/library/Tcl
+%dir %{_libdir}/parrot/%{version}/library/Test
+%dir %{_libdir}/parrot/%{version}/library/Test/Builder
+%dir %{_libdir}/parrot/%{version}/library/YAML
+%dir %{_libdir}/parrot/%{version}/library/YAML/Dumper
+%dir %{_libdir}/parrot/%{version}/library/YAML/Parser
 
-%{_libdir}/parrot/library/Data/*.pir
-%{_libdir}/parrot/library/Data/Dumper/*.pir
-%{_libdir}/parrot/library/Digest/MD5.pir
-%{_libdir}/parrot/library/File/Spec.pir
-%{_libdir}/parrot/library/File/Spec/*.pir
-%{_libdir}/parrot/library/Getopt/*.pir
-%{_libdir}/parrot/library/PGE/*.pir
-%{_libdir}/parrot/library/SDL/*.pir
-%{_libdir}/parrot/library/SDL/*.png
-%{_libdir}/parrot/library/Stream/*.pir
-%{_libdir}/parrot/library/Test/*.pir
-%{_libdir}/parrot/library/Test/Builder/*.pir
-%{_libdir}/parrot/library/YAML/Parser/*.pir
+%{_libdir}/parrot/%{version}/library/CGI/*.pir
+%{_libdir}/parrot/%{version}/library/Config/*.pir
+%{_libdir}/parrot/%{version}/library/Data/*.pir
+%{_libdir}/parrot/%{version}/library/Data/Dumper/*.pir
+%{_libdir}/parrot/%{version}/library/Digest/*.pir
+%{_libdir}/parrot/%{version}/library/Getopt/*.pir
+%{_libdir}/parrot/%{version}/library/HTTP/*.pir
+%{_libdir}/parrot/%{version}/library/Math/*.pir
+%{_libdir}/parrot/%{version}/library/Math/Random/*.pir
+%{_libdir}/parrot/%{version}/library/MIME/*.pir
+%{_libdir}/parrot/%{version}/library/NCI/*.pir
+%{_libdir}/parrot/%{version}/library/Parrot/*.pir
+%{_libdir}/parrot/%{version}/library/PGE/*.pir
+%{_libdir}/parrot/%{version}/library/SDL/*.pir
+%{_libdir}/parrot/%{version}/library/SDL/*.png
+%{_libdir}/parrot/%{version}/library/Stream/*.pir
+%{_libdir}/parrot/%{version}/library/String/*.pir
+%{_libdir}/parrot/%{version}/library/Tcl/*.pir
+%{_libdir}/parrot/%{version}/library/Test/*.pir
+%{_libdir}/parrot/%{version}/library/Test/Builder/*.pir
+%{_libdir}/parrot/%{version}/library/YAML/*.pir
+%{_libdir}/parrot/%{version}/library/YAML/Dumper/*.pir
+%{_libdir}/parrot/%{version}/library/YAML/Parser/*.pir
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*.so
 %dir %{_includedir}/%{name}
-%dir %{_includedir}/%{name}/oplib
-%dir %{_libdir}/parrot/include
-%{_libdir}/parrot/include/*
-%{_includedir}/%{name}/*.h
-%{_includedir}/%{name}/oplib/*.h
+%dir %{_includedir}/%{name}/%{version}
+%dir %{_includedir}/%{name}/%{version}/%{name}
+%dir %{_includedir}/%{name}/%{version}/%{name}/atomic
+%dir %{_includedir}/%{name}/%{version}/%{name}/oplib
+%dir %{_libdir}/parrot/%{version}/include
+%dir %{_pkgconfigdir}/%{name}
+%dir %{_pkgconfigdir}/%{name}/%{version}
+%{_libdir}/parrot/%{version}/include/*
+%{_includedir}/%{name}/%{version}/%{name}/*.h
+%{_includedir}/%{name}/%{version}/%{name}/atomic/*.h
+%{_includedir}/%{name}/%{version}/%{name}/oplib/*.h
 #%{_mandir}/man?/*
-%dir %{_examplesdir}/%{name}-%{version}
-%{_examplesdir}/%{name}-%{version}/*
-%{_pkgconfigdir}/*.pc
+# no examples in parrot 1.0?
+#%dir %{_examplesdir}/%{name}-%{version}
+#%{_examplesdir}/%{name}-%{version}/*
+%{_pkgconfigdir}/%{name}/%{version}/*.pc
 
 %files static
 %defattr(644,root,root,755)
