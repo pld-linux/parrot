@@ -14,12 +14,12 @@
 Summary:	A virtual machine designed to execute bytecode for interpreted languages
 Summary(pl.UTF-8):Maszyna wirtualna przeznaczona do wykonywania bytecodu dla języków interpretowanych
 Name:		parrot
-Version:	1.0.0
-Release:	0.2
+Version:	1.4.0
+Release:	0.1
 License:	GPL v2/Artistic
 Group:		Libraries
 Source0:	ftp://ftp.parrot.org/pub/parrot/releases/stable/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	649ce1fb7c0edaf89dc1cd52ff267b1a
+# Source0-md5:	3f66816c0f2ba18bdd2cf7bedd59f045
 URL:		http://www.parrot.org/
 BuildRequires:	perl-Storable
 BuildRequires:	perl-devel
@@ -249,7 +249,7 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_bindir}
 
-%{__make} install \
+%{__make} -j1 install \
 	PREFIX=%{_prefix} \
 	EXEC_PREFIX=%{_exec_prefix} \
 	BIN_DIR=%{_bindir} \
@@ -293,8 +293,10 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/parrot/%{version}/compilers/pge/PGE/
 %dir %{_libdir}/parrot/%{version}/compilers/pirc
 %dir %{_libdir}/parrot/%{version}/compilers/tge
+%dir %{_libdir}/parrot/%{version}/compilers/tge/TGE
 %dir %{_libdir}/parrot/%{version}/dynext
 %dir %{_libdir}/parrot/%{version}/languages
+%dir %{_libdir}/parrot/%{version}/languages/parrot
 %dir %{_libdir}/parrot/%{version}/languages/pge
 %dir %{_libdir}/parrot/%{version}/languages/pge/PGE
 %dir %{_libdir}/parrot/%{version}/library
@@ -309,6 +311,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/parrot/%{version}/library/Math/Random
 %dir %{_libdir}/parrot/%{version}/library/MIME
 %dir %{_libdir}/parrot/%{version}/library/NCI
+%dir %{_libdir}/parrot/%{version}/library/OpenGL
 %dir %{_libdir}/parrot/%{version}/library/Parrot
 %dir %{_libdir}/parrot/%{version}/library/PGE
 %dir %{_libdir}/parrot/%{version}/library/SDL
@@ -323,6 +326,9 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/parrot/%{version}/tools
 %dir %{_libdir}/parrot/%{version}/tools/build
 %dir %{_libdir}/parrot/%{version}/tools/dev
+%dir %{_libdir}/parrot/%{version}/tools/docs
+%dir %{_libdir}/parrot/%{version}/tools/install
+%dir %{_libdir}/parrot/%{version}/tools/util
 %dir %{_datadir}/parrot
 %dir %{_datadir}/parrot/%{version}
 %dir %{_datadir}/parrot/%{version}/pod
@@ -342,6 +348,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/parrot/%{version}/compilers/pge/*.pbc
 %{_libdir}/parrot/%{version}/compilers/pge/PGE/*.pir
 #%{_libdir}/parrot/%{version}/compilers/pge/PGE/*.pbc
+%{_libdir}/parrot/%{version}/compilers/tge/*.pir
+%{_libdir}/parrot/%{version}/compilers/tge/TGE/*.pir
+%{_libdir}/parrot/%{version}/languages/parrot/parrot.pir
 %{_libdir}/parrot/%{version}/languages/pge/P6Rule.grammar
 %{_libdir}/parrot/%{version}/languages/pge/STATUS
 %{_libdir}/parrot/%{version}/languages/pge/*.pir
@@ -353,11 +362,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/parrot/%{version}/library/*.declarations
 %{_libdir}/parrot/%{version}/library/CGI/*.pir
 %{_libdir}/parrot/%{version}/library/CGI/*.pbc
+%{_libdir}/parrot/%{version}/library/Config/*.pbc
 %{_libdir}/parrot/%{version}/library/Config/*.pir
 %{_libdir}/parrot/%{version}/library/Data/*.pir
 %{_libdir}/parrot/%{version}/library/Data/*.pbc
 %{_libdir}/parrot/%{version}/library/Data/Dumper/*.pir
 %{_libdir}/parrot/%{version}/library/Data/Dumper/*.pbc
+%{_libdir}/parrot/%{version}/library/Digest/*.pbc
 %{_libdir}/parrot/%{version}/library/Digest/*.pir
 %{_libdir}/parrot/%{version}/library/Getopt/*.pir
 %{_libdir}/parrot/%{version}/library/Getopt/*.pbc
@@ -370,6 +381,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/parrot/%{version}/library/MIME/*.pbc
 %{_libdir}/parrot/%{version}/library/NCI/*.pir
 %{_libdir}/parrot/%{version}/library/NCI/*.pbc
+%{_libdir}/parrot/%{version}/library/OpenGL/Math.pir
 %{_libdir}/parrot/%{version}/library/Parrot/*.pir
 %{_libdir}/parrot/%{version}/library/Parrot/*.pbc
 %{_libdir}/parrot/%{version}/library/PGE/*.pir
@@ -379,20 +391,26 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/parrot/%{version}/library/Stream/*.pir
 %{_libdir}/parrot/%{version}/library/Stream/*.pbc
 %{_libdir}/parrot/%{version}/library/String/*.pir
+%{_libdir}/parrot/%{version}/library/Tcl/*.pbc
 %{_libdir}/parrot/%{version}/library/Tcl/*.pir
 %{_libdir}/parrot/%{version}/library/Test/*.pir
+%{_libdir}/parrot/%{version}/library/Test/*.pbc
 %{_libdir}/parrot/%{version}/library/Test/Builder/*.pir
+%{_libdir}/parrot/%{version}/library/Test/Builder/*.pbc
+%{_libdir}/parrot/%{version}/library/YAML/*.pbc
 %{_libdir}/parrot/%{version}/library/YAML/*.pir
 %{_libdir}/parrot/%{version}/library/YAML/Dumper/*.pir
 %{_libdir}/parrot/%{version}/library/YAML/Parser/*.pir
 %{_libdir}/parrot/%{version}/tools/build/*
 %{_libdir}/parrot/%{version}/tools/dev/*
+%{_libdir}/parrot/%{version}/tools/docs/*
+%{_libdir}/parrot/%{version}/tools/install/*
+%{_libdir}/parrot/%{version}/tools/util/*
 %{_datadir}/parrot/%{version}/LICENSE
 %{_datadir}/parrot/%{version}/NEWS
 %{_datadir}/parrot/%{version}/PBC_COMPAT
 %{_datadir}/parrot/%{version}/RESPONSIBLE_PARTIES
 %{_datadir}/parrot/%{version}/pod/*.pod
-%{_datadir}/parrot/%{version}/pod/ops/*.pod
 %{_datadir}/parrot/%{version}/pod/pmc/*.pod
 %{_datadir}/parrot/%{version}/pod/user/pir/*.pod
 %{_docdir}/parrot/book/*
